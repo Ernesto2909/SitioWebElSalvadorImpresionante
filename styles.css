@@ -1,0 +1,300 @@
+*{
+    margin: 0; /*aqui le pongo el margen a los cuatro lados de la pagina que sera de o */
+    padding: 0; /*como el contenido va a rellenar la pagina, aqui le digo que se llene todo*/
+    box-sizing: border-box;
+}
+
+body{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+
+/*para los estilos de la nav voy a ocupar flexbox*/
+
+.navbar{
+    display: flex; /* el flex me permite colocar los alementos como celdas*/
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: teal;
+    color: #fff;
+}
+.nav-links a{
+    color: #fff;
+}
+
+.logo{
+    font-size: 32px;
+}
+
+.menu{
+    display: flex;
+    gap: 1em; /*canales entre filas y comlumnas*/
+    font-size: 18px;
+}
+
+.menu li:hover{
+    background-color: #4c9e9e;
+    border-radius: 5px;
+    transition: 0.3s ease; /*el ease da la velocidad y estilo de la transicion*/
+}
+.menu li{
+    padding: 5px 14px;
+}
+
+/*para el drop*/
+.servicios{
+    position: relative;
+}
+
+.dropdown{
+    background-color: rgb(1, 139, 139);
+    padding: 1em 0;
+    position: absolute;
+    display: none;
+    border-radius: 8px;
+    top: 35px;
+    z-index: 100;
+}
+
+.dropdown li+li{
+    margin-top: 10px;
+}
+.dropdown li{
+    padding: 0.5em 1em;
+    width: 8em;
+    text-align: center;
+}
+
+.dropdown li:hover{
+    background-color: #4c9e9e;
+
+}
+
+.servicios:hover .dropdown{
+    display: block;
+}
+
+/*agrego los mediaqueries para hacer responsive
+ocupo un checkbox para validar el estado y cambiar la forma del menu*/
+
+input[type=checkbox]{
+    display: none;
+}
+
+.hamburguer{
+    display: none;
+    font-size: 24px;
+    user-select: none;
+}
+
+
+@media(max-width: 768px){
+    .menu{
+        display: none;
+        position: absolute;
+        background-color: teal;
+        right: 0;
+        left: 0;
+        text-align: center;
+        padding: 16px 0;
+        z-index: 100;
+    }
+
+    .menu li:hover{
+        display: inline-block;
+        background-color: #4c9e9e;
+        transition: 0.3s ease;
+    }
+
+    .menu li+li{
+        margin-top: 12px;
+    }
+
+    input[type=checkbox]:checked ~ .menu{
+        display: block;
+       }
+
+       .hamburguer{
+           display: block;
+       }
+       .dropdown{
+           left: 50%;
+           top: 30px;
+           transform: translate(35%);
+       }
+
+       .dropdown li:hover{
+           background-color: #4c9e9e;
+       }
+
+}
+
+/*carrusel de imagenes*/
+
+#container-slider{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+#slider{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    min-height: 500px;
+}
+
+#slider li{
+    background-repeat: no-repeat;
+    background-size: cover; /*para que la imagen quede en su mayor tamaño posible*/
+    background-position: center;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100%;
+    height: 100%;
+    display: block;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -ms-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+    z-index: -1;
+    opacity: 0;
+
+}
+
+#container-slider .arrowPrev, #container-slider .arrowNext{
+    font-size: 30pt;
+    color: rgba(204, 204, 204, 0.65);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    z-index: 2; 
+}
+#container-slider .arrowNext {
+    left: initial;
+    right: 50px !important;
+}
+.content_slider{
+    padding: 15px 30px;
+    color: #FFF;
+    width: 100%;
+    height: 100%;
+}
+.content_slider div{
+    text-align: center;
+}
+.content_slider h2{
+    font-family: 'arial';
+    font-size: 30pt;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.content_slider p {
+    font-size: 15pt;
+    font-family: 'arial';
+    color: #FFF;
+    margin-bottom: 20px;
+}
+#slider li .content_slider{
+    background: rgba(0, 0, 0, 0.50);
+    padding: 10px 125px;
+}
+.content_slider{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnSlider{
+    color: #FFF;
+    font-size: 15pt;
+    font-family: 'arial';
+    letter-spacing: 1px;
+    padding: 10px 50px;
+    border: 1px solid #CCC;
+    background: rgba(13, 13, 13, 0.55);
+    border-radius: 31px;
+    text-decoration: none;
+    transition: .5s all;
+}
+.btnSlider:hover{
+    background: #111;
+    border: 1px solid #111;
+}
+.listslider {
+    position: absolute;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    left: 50%;
+    bottom: 5%;
+    list-style: none;
+    z-index: 2;
+    transform: translateX(-50%);
+}
+.listslider li {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+.listslider li a {
+    background: #CCC;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.item-select-slid {
+    background: #FFF  !important;
+}
+
+@media screen and (max-width: 768px){
+	.content_slider h2 {
+	    font-size: 15pt !important;
+	}
+	.content_slider p {
+	    font-size: 12pt !important;
+	}
+	#container-slider .arrowPrev, #container-slider .arrowNext{
+		font-size: 20pt;
+	}
+	#container-slider .arrowPrev{
+		left: 15px;
+	}
+	#container-slider .arrowNext{
+		right: 15px !important;
+	}
+	#slider{
+		height: 400px;
+		min-height: 400px;
+	}
+	#slider li .content_slider{
+		padding: 10px 35px;
+	}
+	.btnSlider{
+		padding: 10px 30px;
+    	font-size: 10pt;
+	}
+
+}
